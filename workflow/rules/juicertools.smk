@@ -3,7 +3,7 @@ rule generate_site_positions:
 	input:
 		ref=GENOME
 	output:
-		OUT+config["genome"]["name"]+config["juicer"]["digestion"]+".txt"
+		OUT+config["genome"]["name"]+"_"+config["juicer"]["digestion"]+".txt"
 	params:
 		script=config["juicer"]["generate_site_positions"],
 		digestion=config["juicer"]["digestion"],
@@ -23,7 +23,7 @@ rule generate_site_positions:
 rule juicer_pre:
 	input:
 		pairfile=OUT+"out_{prefix}_{aligner}/tmp/{prefix}_hicstuff_{mapping}.sorted.pairs",
-		digestion_sites=OUT+config["genome"]["name"]+config["juicer"]["digestion"]+".txt",
+		digestion_sites=OUT+config["genome"]["name"]+"_"+config["juicer"]["digestion"]+".txt",
 		chromsize=OUT+config["genome"]["name"]+".chrom.size"
 	output:
 		OUT+"out_{prefix}_{aligner}/{prefix}_hicstuff_{mapping}.hic"
