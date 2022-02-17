@@ -31,7 +31,7 @@ hicstuff:
     - HinfI
   matfmt: "bg2"
   rm_duplicates: true
-  supp: "--no-cleanup --centromeres=NathalieFrederic_HiC/centromeres_Sac_ceri_W303.txt"
+  supp: "--no-cleanup --centromeres=NathalieFrederic_HiC/centromeres_Sac_ceri_W303.txt --force"
 juicer:
   generate_site_positions: "workflow/scripts/generate_site_positions.py"
   juicertools: "workflow/scripts/juicer_tools_1.22.01.jar"
