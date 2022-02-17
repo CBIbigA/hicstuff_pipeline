@@ -20,4 +20,4 @@ rule cutadapt:
 	conda:
 		"../envs/cutadapt.yaml"
 	shell:
-		"cutadapt {params.adapters} {params.extra} -j {threads} -o {output.fastq} {input} > {output.qc} {log}"
+		"cutadapt {params.adapters} {params.extra} -j {threads} -o {output.fastq} {input} > {output.qc} 2> {log}"
