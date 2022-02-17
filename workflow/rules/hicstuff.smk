@@ -24,7 +24,7 @@ rule hicstuff_pipeline:
 		outfile=OUT+"out_{prefix}_{aligner}/{prefix}_hicstuff_{mapping}"+out_format_hicstuff_file,
 		outpair=OUT+"out_{prefix}_{aligner}/tmp/{prefix}_hicstuff_{mapping}"+out_format_hicstuff_pairs
 	params:
-		outdir="out_{prefix}_{aligner}",
+		outdir=OUT+"out_{prefix}_{aligner}",
 		mapping="{mapping}",
 		aligner="{aligner}",
 		prefix_hicstuff = "{prefix}_hicstuff_{mapping}",
