@@ -9,7 +9,7 @@ R1=config["raw_spec"]["pairs_ext"][0]
 R2=config["raw_spec"]["pairs_ext"][1]
 
 wildcard_constraints:
-    R12=config["raw_spec"]["pairs_expr"]
+    extension=config["raw_spec"]["pairs_expr"]
 
 
 
@@ -23,17 +23,17 @@ rule all:
 
 rule cutadapt:
 	input:
-		IN+"{prefix}_{R12}"+EXT
+		IN+"{prefix}{extension}"+EXT
 	output:
-		fastq=IN+"{prefix}_{R12}.trimmed"+EXT,
-		qc=IN+"{prefix}_{R12}.trimmed.qc"
+		fastq=IN+"{prefix}{extension}.trimmed"+EXT,
+		qc=IN+"{prefix}{extension}.trimmed.qc"
 	log:
-		OUT+"logs/cutadapt/{prefix}_{R12}.log"
-	benchmark
-		OUT+"benchmark/cutadapt/{prefix}_{R12}.txt"
+		OUT+"logs/cutadapt/{prefix}{extension}.log"
+	benchmark:
+		OUT+"benchmark/cutadapt/{prefix}{extension}.txt"
 	threads:config["general"]["threads"]["trimming"]
 	params:
-		adapters = ""
+		adapters = "",
 		extra = "--cut 10"
 	conda:
 		"workflow/envs/cutadapt.yaml"
@@ -76,7 +76,7 @@ rule hicstuff_pipeline:
 		supp=config["hicstuff"]["supp"]
 	log:
 		OUT+"logs/hicstuff_pipeline/{prefix}_{aligner}_{mapping}.log"
-	benchmark
+	benchmark:
 		OUT+"benchmark/hicstuff_pipeline/{prefix}_{aligner}_{mapping}.txt"
 	threads:config["general"]["threads"]["aln"]
 	conda: "workflow/envs/hicstuff.yaml"
@@ -84,7 +84,7 @@ rule hicstuff_pipeline:
 		"hicstuff pipeline -t {threads} "
 		"-a {params.aligner} -e {params.digestion} "
 		"-g {input.ref} --mapping={params.mapping} "
-		"-o {params.outdir} --prefix {params.prefix} "
+		"-o {params.outdir} --prefix {params.prefix_hicstuff} "
 		"{params.supp} "
 		"--matfmt {params.matfmt} "
 		"{input.fastq1} {input.fastq2} > {log}"
@@ -97,12 +97,12 @@ rule generate_site_positions:
 	output:
 		OUT+config["genome"]["name"]+config["juicer"]["digestion"]+".txt"
 	params:
-		script=config["juicer"]["generate_site_positions"]
+		script=config["juicer"]["generate_site_positions"],
 		digestion=config["juicer"]["digestion"],
 		genome=config["genome"]["name"]
 	log:
 		OUT+"logs/generate_site_positions/{params.digestion}_{params.genome}.log"
-	benchmark
+	benchmark:
 		OUT+"benchmark/generate_site_positions/{params.digestion}_{params.genome}.txt"
 	conda: "workflow/envs/pairtools.yaml"
 	shell:
@@ -115,7 +115,7 @@ rule pairtools_sort:
 		temp(OUT+"out_{prefix}_{aligner}/tmp/{prefix}_hicstuff_{mapping}.sorted.pairs")
 	log:
 		OUT+"logs/pairtools_sort/{prefix}_{aligner}_{mapping}.log"
-	benchmark
+	benchmark:
 		OUT+"benchmark/pairtools_sort/{prefix}_{aligner}_{mapping}.txt"
 	conda: "workflow/envs/pairtools.yaml"
 	threads:config["general"]["threads"]["matrix"]
@@ -133,7 +133,7 @@ rule makeChromSize:
 		genome=config["genome"]["name"]
 	log:
 		OUT+"logs/makeChromSize/{params.genome}.log"
-	benchmark
+	benchmark:
 		OUT+"benchmark/makeChromSize/{params.genome}.txt"
 	conda: "workflow/envs/samtools.yaml"
 	shell:
@@ -151,12 +151,12 @@ rule juicer_pre:
 		OUT+"out_{prefix}_{aligner}/{prefix}_hicstuff_{mapping}.hic"
 	log:
 		OUT+"logs/juicer_pre/{prefix}_{aligner}_{mapping}.log"
-	benchmark
+	benchmark:
 		OUT+"benchmark/juicer_pre/{prefix}_{aligner}_{mapping}.txt"
 	conda: "workflow/envs/java-jdk.yaml"
 	threads:config["general"]["threads"]["matrix"]
 	params:
-		juicertools=config["juicer"]["juicertools"]
+		juicertools=config["juicer"]["juicertools"],
 		resolutions=config["juicer"]["resolutions"]
 	shell:
 		"java -jar {params.juicertools} pre -f {input.digestion_sites} --threads {threads} -r {params.resolutions} {input.pairfile} {output} {input.chromsize}"
@@ -169,7 +169,7 @@ rule cooler_pairs:
 		OUT+"out_{prefix}_{aligner}/{prefix}_hicstuff_{mapping}.cool"
 	log:
 		OUT+"logs/cooler_pairs/{prefix}_{aligner}_{mapping}.log"
-	benchmark
+	benchmark:
 		OUT+"benchmark/cooler_pairs/{prefix}_{aligner}_{mapping}.txt"
 	conda: "workflow/envs/cooler.yaml"
 	params:
@@ -185,7 +185,7 @@ rule cooler_zoomify:
 		OUT+"out_{prefix}_{aligner}/{prefix}_hicstuff_{mapping}.mcool"
 	log:
 		OUT+"logs/cooler_zoomify/{prefix}_{aligner}_{mapping}.log"
-	benchmark
+	benchmark:
 		OUT+"benchmark/cooler_zoomify/{prefix}_{aligner}_{mapping}.txt"
 	conda: "workflow/envs/cooler.yaml"
 	threads:config["general"]["threads"]["matrix"]

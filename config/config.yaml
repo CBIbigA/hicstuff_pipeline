@@ -1,6 +1,8 @@
 general:
-  sampleint: "CH85_S7/RAW/"
+  samplein: "CH85_S7/RAW/"
   sampleout: "CH85_S7/"
+  samples:
+    - "CH85_S7"
   threads:
     trimming: 12
     aln: 12
@@ -11,7 +13,7 @@ genome:
   name: "W303"
   ext: ".fa"
 raw_spec:
-  ext: ".fastq.gz"
+  ext: "_001.gz"
   pairs_expr: "_R[12]"
   pairs_ext: 
     - "_R1"
@@ -34,7 +36,8 @@ juicer:
   generate_site_positions: "workflow/scripts/generate_site_positions.py"
   juicertools: "workflow/scripts/juicer_tools_1.22.01.jar"
   resolutions: "500,1000,2000,3000,4000,5000,10000"
+  digestion: "Arima"
 cooler:
-  minrez: "500"
+  minres: "500"
   resolutions: "500,1000,2000,3000,4000,5000,10000"
   options: "--balance"
