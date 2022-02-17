@@ -1,7 +1,7 @@
 rule cooler_pairs:
 	input:
 		pairfile=OUT+"out_{prefix}_{aligner}/tmp/{prefix}_hicstuff_{mapping}.sorted.pairs",
-		chromsize=OUT+config["genome"]["name"]+"chrom.size"
+		chromsize=OUT+config["genome"]["name"]+".chrom.size"
 	output:
 		OUT+"out_{prefix}_{aligner}/{prefix}_hicstuff_{mapping}.cool"
 	log:

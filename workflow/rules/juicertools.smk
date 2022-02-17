@@ -24,7 +24,7 @@ rule juicer_pre:
 	input:
 		pairfile=OUT+"out_{prefix}_{aligner}/tmp/{prefix}_hicstuff_{mapping}.sorted.pairs",
 		digestion_sites=OUT+config["genome"]["name"]+config["juicer"]["digestion"]+".txt",
-		chromsize=OUT+config["genome"]["name"]+"chrom.size"
+		chromsize=OUT+config["genome"]["name"]+".chrom.size"
 	output:
 		OUT+"out_{prefix}_{aligner}/{prefix}_hicstuff_{mapping}.hic"
 	log:
