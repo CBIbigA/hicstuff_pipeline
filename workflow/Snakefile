@@ -9,12 +9,12 @@ R1=config["raw_spec"]["pairs_ext"][0]
 R2=config["raw_spec"]["pairs_ext"][1]
 
 
-include:"workflow/rules/cooler.smk"
-include:"workflow/rules/cutadapt.smk"
-include:"workflow/rules/hicstuff.smk"
-include:"workflow/rules/juicertools.smk"
-include:"workflow/rules/makeChromSize.smk"
-include:"workflow/rules/pairtools.smk"
+include:"rules/cooler.smk"
+include:"rules/cutadapt.smk"
+include:"rules/hicstuff.smk"
+include:"rules/juicertools.smk"
+include:"rules/makeChromSize.smk"
+include:"rules/pairtools.smk"
 
 rule all:
 	input:
