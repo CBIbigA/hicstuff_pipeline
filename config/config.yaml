@@ -1,0 +1,40 @@
+general:
+  sampleint: "CH85_S7/RAW/"
+  sampleout: "CH85_S7/"
+  threads:
+    trimming: 12
+    aln: 12
+    cooler: 12
+    matrix: 12
+genome:
+  dir: "NathalieFrederic_HiC/"
+  name: "W303"
+  ext: ".fa"
+raw_spec:
+  ext: ".fastq.gz"
+  pairs_expr: "_R[12]"
+  pairs_ext: 
+    - "_R1"
+    - "_R2"
+cutadapt:
+  adapters: ""
+  extra: "--cut 10"
+hicstuff:
+  aligner:
+    - bowtie2
+  mapping:
+    - iterative
+  digestion:
+    - DnpII
+    - HinfI
+  matfmt: "bg2"
+  rm_duplicates: true
+  supp: "--no-cleanup --centromeres=NathalieFrederic_HiC/centromeres_Sac_ceri_W303.txt"
+juicer:
+  generate_site_positions: "workflow/scripts/generate_site_positions.py"
+  juicertools: "workflow/scripts/juicer_tools_1.22.01.jar"
+  resolutions: "500,1000,2000,3000,4000,5000,10000"
+cooler:
+  minrez: "500"
+  resolutions: "500,1000,2000,3000,4000,5000,10000"
+  options: "--balance"

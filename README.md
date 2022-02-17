@@ -1,10 +1,10 @@
-# Snakemake workflow: `<name>`
+# Snakemake workflow: `hicstuff_pipeline`
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥6.3.0-brightgreen.svg)](https://snakemake.github.io)
 [![GitHub actions status](https://github.com/CBIbigA/hicstuff_pipeline/workflows/Tests/badge.svg?branch=main)](https://github.com/CBIbigA/hicstuff_pipeline/actions?query=branch%3Amain+workflow%3ATests)
 
 
-A Snakemake workflow for `<description>`
+A Snakemake workflow for Hi-c reads alignments with hicstuff
 
 
 ## Usage
@@ -16,6 +16,6 @@ If you use this workflow in a paper, don't forget to give credits to the authors
 # TODO
 
 * Replace `CBIbigA` and `hicstuff_pipeline` everywhere in the template (also under .github/workflows) with the correct `hicstuff_pipeline` name and owning user or organization.
-* Replace `<name>` with the workflow name (can be the same as `hicstuff_pipeline`).
+* Replace `hicstuff_pipeline` with the workflow name (can be the same as `hicstuff_pipeline`).
 * Replace `<description>` with a description of what the workflow does.
 * The workflow will occur in the snakemake-workflow-catalog once it has been made public. Then the link under "Usage" will point to the usage instructions if `CBIbigA` and `hicstuff_pipeline` were correctly set.
