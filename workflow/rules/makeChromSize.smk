@@ -3,7 +3,7 @@ rule makeChromSize:
 	input:
 		fasta=GENOME
 	output:
-		chromsize=OUT+config["genome"]["name"]+"chrom.size",
+		chromsize=OUT+config["genome"]["name"]+".chrom.size",
 		fai=GENOME+".fai"
 	params:
 		genome=config["genome"]["name"]
