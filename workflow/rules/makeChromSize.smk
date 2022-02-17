@@ -8,9 +8,9 @@ rule makeChromSize:
 	params:
 		genome=config["genome"]["name"]
 	log:
-		OUT+"logs/makeChromSize/{params.genome}.log"
+		f"{OUT}logs/makeChromSize/{config["genome"]["name"]}.log"
 	benchmark:
-		OUT+"benchmark/makeChromSize/{params.genome}.txt"
+		f"{OUT}benchmark/makeChromSize/{config["genome"]["name"]}.txt"
 	conda: "../envs/samtools.yaml"
 	shell:
-		"samtools faidx {input.fasta} -o {output.fai} && cut -f1,2 {output.fai} > {output.chromsize}"
+		"samtools faidx {input.fasta} -o {output.fai} && cut -f1,2 {output.fai} > {output.chromsize} 2> {log}"
