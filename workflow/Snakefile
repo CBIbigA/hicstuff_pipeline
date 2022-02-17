@@ -63,7 +63,6 @@ rule hicstuff_pipeline:
 		fastq1=IN+"{prefix}"+R1+".trimmed"+EXT,
 		fastq2=IN+"{prefix}"+R2+".trimmed"+EXT
 	output:
-		outdir=dir(OUT+"out_{prefix}_{aligner}"),
 		outfile=OUT+"out_{prefix}_{aligner}/{prefix}_hicstuff_{mapping}"+out_format_hicstuff_file,
 		outpair=OUT+"out_{prefix}_{aligner}/tmp/{prefix}_hicstuff_{mapping}"+out_format_hicstuff_pairs
 	params:
@@ -75,9 +74,9 @@ rule hicstuff_pipeline:
 		digestion=digestion,
 		supp=config["hicstuff"]["supp"]
 	log:
-		OUT+"logs/hicstuff_pipeline/{prefix}_{aligner}_{mapping}.log"
+		OUT+"logs/hicstuff_pipeline/{prefix}_hicstuff_{aligner}_{mapping}.log"
 	benchmark:
-		OUT+"benchmark/hicstuff_pipeline/{prefix}_{aligner}_{mapping}.txt"
+		OUT+"benchmark/hicstuff_pipeline/{prefix}_hicstuff_{aligner}_{mapping}.txt"
 	threads:config["general"]["threads"]["aln"]
 	conda: "workflow/envs/hicstuff.yaml"
 	shell:
