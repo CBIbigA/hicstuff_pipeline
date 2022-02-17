@@ -6,5 +6,6 @@ channels:
 dependencies:
   - bowtie2
   - samtools
+  - minimap2
   - pip:
     - hicstuff==3.1.2
