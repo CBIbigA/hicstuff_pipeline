@@ -5,7 +5,7 @@ general:
     - "CH85_S7"
   threads:
     trimming: 12
-    aln: 12
+    aln: 24
     cooler: 12
     matrix: 12
 genome:
