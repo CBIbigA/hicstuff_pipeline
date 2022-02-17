@@ -25,7 +25,7 @@ rule cutadapt:
 	input:
 		IN+"{prefix}_{R12}"+EXT
 	output:
-		fastq=IN+"{prefix}_{R12}.trimmed"+EXT
+		fastq=IN+"{prefix}_{R12}.trimmed"+EXT,
 		qc=IN+"{prefix}_{R12}.trimmed.qc"
 	log:
 		OUT+"logs/cutadapt/{prefix}_{R12}.log"
