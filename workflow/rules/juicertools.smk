@@ -9,9 +9,9 @@ rule generate_site_positions:
 		digestion=config["juicer"]["digestion"],
 		genome=config["genome"]["name"]
 	log:
-		f"{OUT}logs/generate_site_positions/{config["juicer"]["digestion"]}_{config["genome"]["name"]}.log"
+		f"{OUT}logs/generate_site_positions/{config['juicer']['digestion']}_{config['genome']['name']}.log"
 	benchmark:
-		f"{OUT}benchmark/generate_site_positions/{config["juicer"]["digestion"]}_{config["genome"]["name"]}.txt"
+		f"{OUT}benchmark/generate_site_positions/{config['juicer']['digestion']}_{config['genome']['name']}.txt"
 	conda: "../envs/pairtools.yaml"
 	shell:
 		"{params.script} {params.digestion} {params.genome} {input}"
