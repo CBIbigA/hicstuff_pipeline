@@ -18,6 +18,6 @@ rule cutadapt:
 		adapters = "",
 		extra = "--cut 10"
 	conda:
-		"workflow/envs/cutadapt.yaml"
+		"envs/cutadapt.yaml"
 	shell:
 		"cutadapt {params.adapters} {params.extra} -j {threads} -o {output.fastq} {input} > {output.qc} {log}"

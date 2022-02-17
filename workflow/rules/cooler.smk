@@ -8,7 +8,7 @@ rule cooler_pairs:
 		OUT+"logs/cooler_pairs/{prefix}_{aligner}_{mapping}.log"
 	benchmark:
 		OUT+"benchmark/cooler_pairs/{prefix}_{aligner}_{mapping}.txt"
-	conda: "workflow/envs/cooler.yaml"
+	conda: "envs/cooler.yaml"
 	params:
 		minres=config["cooler"]["minres"]
 	shell:
@@ -24,7 +24,7 @@ rule cooler_zoomify:
 		OUT+"logs/cooler_zoomify/{prefix}_{aligner}_{mapping}.log"
 	benchmark:
 		OUT+"benchmark/cooler_zoomify/{prefix}_{aligner}_{mapping}.txt"
-	conda: "workflow/envs/cooler.yaml"
+	conda: "envs/cooler.yaml"
 	threads:config["general"]["threads"]["matrix"]
 	params:
 		resolutions=config["cooler"]["resolutions"],
