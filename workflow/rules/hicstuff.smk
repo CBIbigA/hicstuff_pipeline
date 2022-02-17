@@ -36,7 +36,7 @@ rule hicstuff_pipeline:
 	benchmark:
 		OUT+"benchmark/hicstuff_pipeline/{prefix}_hicstuff_{aligner}_{mapping}.txt"
 	threads:config["general"]["threads"]["aln"]
-	conda: "envs/hicstuff.yaml"
+	conda: "../envs/hicstuff.yaml"
 	shell:
 		"hicstuff pipeline -t {threads} "
 		"-a {params.aligner} -e {params.digestion} "
