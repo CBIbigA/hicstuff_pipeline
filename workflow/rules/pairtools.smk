@@ -7,7 +7,7 @@ rule pairtools_sort:
 		OUT+"logs/pairtools_sort/{prefix}_{aligner}_{mapping}.log"
 	benchmark:
 		OUT+"benchmark/pairtools_sort/{prefix}_{aligner}_{mapping}.txt"
-	conda: "envs/pairtools.yaml"
+	conda: "../envs/pairtools.yaml"
 	threads:config["general"]["threads"]["matrix"]
 	shell:
 		"pairtools sort --nproc {threads} {input} -o {output} > {log}"

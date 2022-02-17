@@ -12,7 +12,7 @@ rule generate_site_positions:
 		OUT+"logs/generate_site_positions/{params.digestion}_{params.genome}.log"
 	benchmark:
 		OUT+"benchmark/generate_site_positions/{params.digestion}_{params.genome}.txt"
-	conda: "envs/pairtools.yaml"
+	conda: "../envs/pairtools.yaml"
 	shell:
 		"{params.script} {params.digestion} {params.genome} {input}"
 
@@ -31,7 +31,7 @@ rule juicer_pre:
 		OUT+"logs/juicer_pre/{prefix}_{aligner}_{mapping}.log"
 	benchmark:
 		OUT+"benchmark/juicer_pre/{prefix}_{aligner}_{mapping}.txt"
-	conda: "envs/java-jdk.yaml"
+	conda: "../envs/java-jdk.yaml"
 	threads:config["general"]["threads"]["matrix"]
 	params:
 		juicertools=config["juicer"]["juicertools"],

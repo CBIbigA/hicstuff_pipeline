@@ -11,6 +11,6 @@ rule makeChromSize:
 		OUT+"logs/makeChromSize/{params.genome}.log"
 	benchmark:
 		OUT+"benchmark/makeChromSize/{params.genome}.txt"
-	conda: "envs/samtools.yaml"
+	conda: "../envs/samtools.yaml"
 	shell:
 		"samtools faidx {input.fasta} -o {output.fai} && cut -f1,2 {output.fai} > {output.chromsize}"
