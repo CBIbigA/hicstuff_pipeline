@@ -14,7 +14,7 @@ rule generate_site_positions:
 		f"{OUT}benchmark/generate_site_positions/{config['juicer']['digestion']}_{config['genome']['name']}.txt"
 	conda: "../envs/pairtools.yaml"
 	shell:
-		"{params.script} {params.digestion} {params.genome} {input}"
+		"{params.script} {params.digestion} {params.genome} {input} && mv {params.genome}_{params.digestion} {output}"
 
 
 
