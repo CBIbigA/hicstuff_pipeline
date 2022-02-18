@@ -46,4 +46,4 @@ rule hicstuff_pipeline:
 		"-o {params.outdir} --prefix {params.prefix_hicstuff} "
 		"{params.supp} "
 		"--matfmt {params.matfmt} "
-		"{input.fastq1} {input.fastq2} > {log}"
+		"{input.fastq1} {input.fastq2} 2> {log}"
