@@ -59,14 +59,14 @@ def process_args(args):
   if len(args) != 3 and len(args) != 4:
     usage()
 
-  enzyme     = args[1]
-  genome     = args[2]
+  enzyme     = snakemake.params["digestion"]
+  genome     = snakemake.params["genome"]
   inputfile  = ''
   outputfile = ''
   pattern    = ''
 
   if len(args) == 4:
-    inputfile = args[3]
+    inputfile = snakemake.input[0]
   elif genome in filenames:
     inputfile = filenames[genome]
   else:
