@@ -4,10 +4,10 @@ general:
   samples:
     - "CH85_S7"
   threads:
-    trimming: 12
-    aln: 24
-    cooler: 12
-    matrix: 12
+    trimming: 128
+    aln: 128
+    cooler: 128
+    matrix: 128
 genome:
   dir: "../NathalieFrederic_HiC/"
   name: "W303"
