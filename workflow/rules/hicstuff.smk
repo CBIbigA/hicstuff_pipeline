@@ -7,7 +7,6 @@ else:
 	config["hicstuff"]["matfmt"] == "graal"
 	out_format_hicstuff_file = ".tsv"
 
-digestion=",".join(config["hicstuff"]["digestion"])
 
 supp_cmds = config["hicstuff"]["supp"]
 
@@ -31,7 +30,7 @@ rule hicstuff_pipeline:
 		aligner="{aligner}",
 		prefix_hicstuff = "{prefix}_hicstuff_{mapping}",
 		matfmt=config["hicstuff"]["matfmt"],
-		digestion=digestion,
+		digestion=config["hicstuff"]["digestion"],
 		supp=supp_cmds
 	log:
 		OUT+"logs/hicstuff_pipeline/{prefix}_hicstuff_{aligner}_{mapping}.log"

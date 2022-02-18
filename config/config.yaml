@@ -26,9 +26,7 @@ hicstuff:
     - bowtie2
   mapping:
     - iterative
-  digestion:
-    - DnpII
-    - HinfI
+  digestion: "DnpII,HinfI"
   matfmt: "bg2"
   rm_duplicates: true
   supp: "--no-cleanup --centromeres=NathalieFrederic_HiC/centromeres_Sac_ceri_W303.txt --force"
