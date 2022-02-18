@@ -41,7 +41,7 @@ rule hicstuff_pipeline:
 	conda: "../envs/hicstuff.yaml"
 	shell:
 		"hicstuff pipeline -t {threads} "
-		"-a {params.aligner} -e {params.digestion} "
+		"-a {params.aligner} --enzyme={params.digestion} "
 		"-g {input.ref} --mapping={params.mapping} "
 		"-o {params.outdir} --prefix {params.prefix_hicstuff} "
 		"{params.supp} "
