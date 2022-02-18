@@ -5,7 +5,6 @@ rule generate_site_positions:
 	output:
 		OUT+config["genome"]["name"]+"_"+config["juicer"]["digestion"]+".txt"
 	params:
-		script=config["juicer"]["generate_site_positions"],
 		digestion=config["juicer"]["digestion"],
 		genome=config["genome"]["name"]
 	log:
@@ -14,7 +13,7 @@ rule generate_site_positions:
 		f"{OUT}benchmark/generate_site_positions/{config['juicer']['digestion']}_{config['genome']['name']}.txt"
 	conda: "../envs/pairtools.yaml"
 	script:
-		"{params.script}"
+		"../scripts/generate_site_positions.py"
 
 
 
