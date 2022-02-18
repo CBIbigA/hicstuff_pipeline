@@ -9,9 +9,11 @@ else:
 
 digestion=",".join(config["hicstuff"]["digestion"])
 
+supp_cmds = config["hicstuff"]["supp"]
+
 if config["hicstuff"]["rm_duplicates"]:
 	out_format_hicstuff_pairs=".valid_idx_pcrfree.pairs"
-	config["hicstuff"]["supp"]=config["hicstuff"]["supp"]+" --duplicates"
+	supp_cmds=supp_cmds+" --duplicates"
 else:
 	out_format_hicstuff_pairs=".valid_idx.pairs"
 
@@ -30,7 +32,7 @@ rule hicstuff_pipeline:
 		prefix_hicstuff = "{prefix}_hicstuff_{mapping}",
 		matfmt=config["hicstuff"]["matfmt"],
 		digestion=digestion,
-		supp=config["hicstuff"]["supp"]
+		supp=supp_cmds
 	log:
 		OUT+"logs/hicstuff_pipeline/{prefix}_hicstuff_{aligner}_{mapping}.log"
 	benchmark:
