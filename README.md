@@ -15,7 +15,10 @@ If you use this workflow in a paper, don't forget to give credits to the authors
 
 # TODO
 
-* Replace `CBIbigA` and `hicstuff_pipeline` everywhere in the template (also under .github/workflows) with the correct `hicstuff_pipeline` name and owning user or organization.
-* Replace `hicstuff_pipeline` with the workflow name (can be the same as `hicstuff_pipeline`).
-* Replace `<description>` with a description of what the workflow does.
-* The workflow will occur in the snakemake-workflow-catalog once it has been made public. Then the link under "Usage" will point to the usage instructions if `CBIbigA` and `hicstuff_pipeline` were correctly set.
+- Deploy the pipeline: `snakedeploy deploy-workflow https://github.com/CBIbigA/hicstuff_pipeline hicstuff_pipeline --branch main --force`
+- Create the scripts directory: `cd hicstuff_pipeline && mkdir scripts && cd scripts`
+- Get the files:
+  - `wget https://github.com/CBIbigA/hicstuff_pipeline/raw/main/workflow/scripts/generate_site_positions.py`
+  - `wget https://github.com/CBIbigA/hicstuff_pipeline/raw/main/workflow/scripts/juicer_tools_1.22.01.jar`
+- Make sure you can execute the script: `chmod +x generate_site_positions.py`
+- Go into `hicstuff_pipeline` and launch `snakemake --use-conda`
